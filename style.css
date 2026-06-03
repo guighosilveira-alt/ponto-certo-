@@ -1,0 +1,374 @@
+/* Configurações Globais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f172a; /* Azul escuro profundo (Dark mode) */
+    color: #f8fafc;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- GERENCIAMENTO DE TELAS --- */
+.screen {
+    display: none; /* Oculta as telas por padrão */
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+}
+
+.screen.active {
+    display: flex; /* Mostra apenas a tela que tiver a classe active */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Container da Tela Inicial */
+.splash-container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* --- LOGOTIPO TEMÁTICO (RELÓGIO ANIMADO) --- */
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.clock-logo {
+    width: 100px;
+    height: 100px;
+    border: 4px solid #06b6d4; /* Ciano Neon */
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+/* Ponteiros */
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    background-color: #f8fafc;
+    transform-origin: bottom;
+    border-radius: 4px;
+}
+
+.hour-hand {
+    width: 4px;
+    height: 25px;
+    transform: translateX(-50%) rotate(45deg);
+    animation: rotateHand 12s linear infinite;
+}
+
+.minute-hand {
+    width: 3px;
+    height: 35px;
+    background-color: #38bdf8; /* Azul claro */
+    transform: translateX(-50%) rotate(180deg);
+    animation: rotateHand 3s linear infinite;
+}
+
+.center-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #06b6d4;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Nome da Marca */
+.brand-name {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+.brand-name span {
+    color: #06b6d4; /* Destaque no "_certo" */
+}
+
+/* --- ÁREA CENTRAL (RELÓGIO DIGITAL) --- */
+.welcome-text p {
+    color: #94a3b8;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.live-clock {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 2px;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* --- BOTÕES --- */
+.action-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.btn-primary {
+    background-color: #06b6d4;
+    color: #0f172a;
+}
+
+.btn-primary:hover {
+    background-color: #22d3ee;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #94a3b8;
+    border: 1px solid #334155;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+/* --- ESTILIZAÇÃO DA TELA SOBRE --- */
+.about-container {
+    background-color: #1e293b; 
+    border: 1px solid #334155;
+    border-radius: 24px;
+    padding: 30px 24px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.about-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-icon {
+    font-size: 2.5rem;
+    color: #06b6d4;
+}
+
+.about-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.about-content {
+    text-align: left;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+.about-content .greeting {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.about-content span, 
+.about-content strong {
+    color: #06b6d4;
+    font-weight: 600;
+}
+
+.about-footer {
+    margin-top: 15px;
+    border-top: 1px solid #334155;
+    padding-top: 15px;
+}
+
+.about-footer p {
+    font-size: 0.75rem;
+    color: #64748b;
+    letter-spacing: 0.5px;
+}
+
+/* --- ESTILIZAÇÃO DO PAINEL DE REGISTROS --- */
+.painel-container {
+    width: 90%;
+    max-width: 400px;
+    background: #1e293b; 
+    border: 1px solid #334155;
+    padding: 30px 24px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.painel-container h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background: #0f172a;
+    color: #06b6d4;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.marcacao-input {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    width: 100%;
+}
+
+.marcacao-input:focus {
+    border-color: #06b6d4;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+}
+
+.resultado-box {
+    margin: 20px 0;
+    padding: 15px;
+    border: 2px dashed #06b6d4;
+    border-radius: 12px;
+    text-align: center;
+    color: #06b6d4;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: rgba(6, 182, 212, 0.03);
+}
+
+.sugestao-box {
+    margin: 10px 0 20px 0;
+    padding: 12px;
+    border: 1px solid #38bdf8;
+    background: rgba(56, 189, 248, 0.05);
+    color: #38bdf8;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* --- DESIGN ESTILIZADO DA TELA DE ENCERRAMENTO --- */
+.exit-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.exit-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.exit-text span {
+    color: #06b6d4;
+}
+
+.exit-subtext {
+    color: #64748b;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Efeito de Carregamento Ciano Neon */
+.spinner-neon {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(6, 182, 212, 0.1);
+    border-left-color: #06b6d4;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+}
+
+/* Animações adicionais */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateHand {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+  
