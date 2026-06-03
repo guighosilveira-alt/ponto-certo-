@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.Ponto_certo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon.png">
+    
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0f172a">
+    <meta name="apple-mobile-web-app-title" content=".Ponto_certo">
+</head>
+<body>
+
+    <section class="screen active" id="home-screen">
+        <div class="splash-container">
+            <div class="logo-wrapper">
+                <div class="clock-logo">
+                    <div class="hand hour-hand"></div>
+                    <div class="hand minute-hand"></div>
+                    <div class="center-dot"></div>
+                </div>
+                <h1 class="brand-name">.Ponto<span>_certo</span></h1>
+            </div>
+
+            <div class="welcome-text">
+                <p>Seu controle de tempo inteligente</p>
+                <div class="live-clock" id="liveClock">00:00:00</div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="btnEntrar">
+                    <i class="fa-solid fa-right-to-bracket"></i> Entrar no Painel
+                </button>
+                <button class="btn btn-secondary" id="btnSobre">
+                    <i class="fa-solid fa-circle-info"></i> Sobre o App
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="screen" id="sobre-screen">
+        <div class="about-container">
+            <div class="about-header">
+                <i class="fa-solid fa-circle-info about-icon"></i>
+                <h2>Sobre o App</h2>
+            </div>
+            
+            <div class="about-content">
+                <p class="greeting">Seja bem vindo a <span>.Ponto_certo</span>, seu aplicativo de controle de ponto.</p>
+                <p class="description">Nele você insere seus registros do dia e acompanha suas horas extras sem gerar ocorrências de ponto. Seu ponto agora é <strong>.Ponto_certo</strong>.</p>
+            </div>
+
+            <button class="btn btn-secondary" id="btnVoltar">
+                <i class="fa-solid fa-arrow-left"></i> Voltar
+            </button>
+
+            <footer class="about-footer">
+                <p>Criação e desenvolvimento 011545287 - Rodrigo_Silveira</p>
+            </footer>
+        </div>
+    </section>
+
+    <section class="screen" id="painel-screen">
+        <div class="painel-container">
+            <h2>Configurar Jornada</h2>
+            
+            <select id="tipoJornada">
+                <option value="7">Jornada Padrão (7h)</option>
+                <option value="8">Jornada Especial (8h)</option>
+            </select>
+
+            <select id="tipoIntervalo">
+                <option value="4">Intervalo Padrão (4 marcações)</option>
+                <option value="6">Dois Intervalos (6 marcações)</option>
+            </select>
+
+            <div id="input-marcacoes" class="input-grid">
+                </div>
+
+            <div class="resultado-box">
+                <p>Horas Extras: <span id="horasExtras">00:00</span></p>
+            </div>
+
+            <div class="sugestao-box" id="caixaSugestao" style="display: none;">
+                </div>
+
+            <button class="btn btn-secondary" id="btnLimpar">Limpar Marcações</button>
+            <button class="btn btn-primary" id="btnSalvarFechar">Salvar e Encerrar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="encerramento-screen">
+        <div class="exit-container">
+            <div class="spinner-neon"></div>
+            <h2 class="exit-text">Encerrando aplicação<span>...</span></h2>
+            <p class="exit-subtext">Dados salvos com sucesso</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+                                                                                                                      
