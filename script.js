@@ -117,7 +117,6 @@ function calcularExtras() {
         if (pontos[0] !== null && pontos[1] !== null) {
             let t1 = pontos[1] - pontos[0]; if (t1 < 0) t1 += 1440; minutosTrabalhados += t1;
         }
-        // CORRIGIDO: Removido o termo "osteoporosis" incorreto que quebrava o script
         if (pontos[2] !== null && pontos[3] !== null) {
             let t2 = pontos[3] - pontos[2]; if (t2 < 0) t2 += 1440; minutosTrabalhados += t2;
         }
@@ -141,7 +140,7 @@ function calcularExtras() {
             let t1 = 0, t2 = 0;
             if (pontos[0] !== null && pontos[1] !== null) { t1 = pontos[1] - pontos[0]; if (t1 < 0) t1 += 1440; }
             if (pontos[2] !== null && pontos[3] !== null) { t2 = pontos[3] - pontos[2]; if (t2 < 0) t2 += 1440; }
-            minutosTrabalhadosAteAgora = t1 + t2; // Soma o primeiro e o segundo turno trabalhado
+            minutosTrabalhadosAteAgora = t1 + t2; 
         }
 
         const tempoMaximoDisponivel = (minutosJornadaAlvo + LIMITE_MAXIMO_EXTRA) - minutosTrabalhadosAteAgora;
@@ -177,7 +176,7 @@ document.getElementById('btnLimpar').addEventListener('click', () => {
     renderizarCampos();
 });
 
-// SALVAR E EXIBIR TELA DE ENCERRAMENTO
+// --- SALVAR E EXIBIR TELA DE ENCERRAMENTO (FORÇANDO FECHAMENTO OU REDIRECIONAMENTO) ---
 document.getElementById('btnSalvarFechar').addEventListener('click', () => {
     const dadosParaSalvar = {
         jornada: tipoJornada.value,
@@ -185,14 +184,24 @@ document.getElementById('btnSalvarFechar').addEventListener('click', () => {
         horasExtras: txtHorasExtras.textContent
     };
     
+    // Salva os dados no dispositivo
     localStorage.setItem('pontoCerto_dados', JSON.stringify(dadosParaSalvar));
     
+    // Transição de telas: oculta o painel e ativa a animação de encerramento
     painelScreen.classList.remove('active');
     encerramentoScreen.classList.add('active');
     
+    // Aguarda 2.5 segundos com o spinner rodando na tela estilizada antes de sair
     setTimeout(() => {
-        document.body.innerHTML = "";
-        document.body.style.backgroundColor = "#000000"; 
+        // Truque 1: Tenta fechar a aba se tiver permissão (Funciona se abrir pelo ícone da tela inicial)
+        window.close();
+        
+        // Truque 2: Abre uma página em branco sobre si mesma e fecha (Força o fechamento em alguns navegadores)
+        window.open('about:blank', '_self').close();
+        
+        // Truque 3: Se o navegador ainda assim bloquear o fechamento da aba, 
+        // ele vai "minimizar" o app expulsando o usuário para o Google.
+        window.location.href = "https://www.google.com";
     }, 2500);
 });
-
+        
